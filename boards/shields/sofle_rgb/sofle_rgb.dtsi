@@ -1,0 +1,21 @@
+&spi3 {
+    status = "okay";
+    sck-pin = <NRF_PSEL(SPIM_SCK, 0, 2)>;
+    mosi-pin = <NRF_PSEL(SPIM_MOSI, 0, 8)>;  // P0.08 corresponds to Pin 8 on Nice!Nano
+    miso-pin = <NRF_PSEL(SPIM_MISO, 0, 31)>; // Unused but required
+    cs-gpios = <0>;
+
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        reg = <0>;
+        label = "RGB Underglow";
+
+        spi-max-frequency = <4000000>;
+
+        chain-length = <30>;  // Number of LEDs per half
+        pixel-format = "GRB";  // Adjust if your LEDs use a different color order
+
+        spi-one-frame = <0xF0>;
+        spi-zero-frame = <0xC0>;
+    };
+};
