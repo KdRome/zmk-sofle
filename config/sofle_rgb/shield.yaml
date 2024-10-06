@@ -1,4 +1,0 @@
-name: "Sofle RGB"
-compatible:
-  - zmk,keyboard
-include: sofle
